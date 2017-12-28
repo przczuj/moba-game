@@ -1,3 +1,8 @@
+Button = {
+    LMB: "LMB",
+    RMB: "RMB"
+};
+
 function Mouse() {
     var motionListeners = [];
     var clickListeners = [];
@@ -7,6 +12,7 @@ function Mouse() {
     };
     var click = {
         up: true,
+        button: Button.LMB,
         x: 0,
         y: 0
     };

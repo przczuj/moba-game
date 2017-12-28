@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+}
+
+body > * {
+    display: block;
+}
+
+.game-resource {
+    display: none;
+}

@@ -42,10 +42,31 @@ function Display(
     };
 
     this.fullScreen = function () {
-        if(canvasElem.webkitRequestFullScreen) {
-            canvasElem.webkitRequestFullScreen();
+        var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
+                (document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
+                (document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
+                (document.msFullscreenElement && document.msFullscreenElement !== null);
+
+        if (!isInFullScreen) {
+            if (canvasElem.requestFullscreen) {
+                canvasElem.requestFullscreen();
+            } else if (canvasElem.mozRequestFullScreen) {
+                canvasElem.mozRequestFullScreen();
+            } else if (canvasElem.webkitRequestFullScreen) {
+                canvasElem.webkitRequestFullScreen();
+            } else if (canvasElem.msRequestFullscreen) {
+                canvasElem.msRequestFullscreen();
+            }
         } else {
-            canvasElem.mozRequestFullScreen();
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
         }
     };
 

@@ -22,7 +22,7 @@ function Minimap(map) {
 
     this.position = position;
 
-    this.display = function (
+    this.render = function (
         ctx,
         display,
         cameraPos

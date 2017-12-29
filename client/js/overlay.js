@@ -4,20 +4,20 @@ function Overlay(minimap) {
     this.minimap = minimap;
     this.toggleDebug = debug.toggle;
 
-    this.display = function (
+    this.render = function (
         ctx,
         display,
         cameraPos
     ) {
-        minimap.display(ctx, display, cameraPos);
-        debug.display(ctx, display.fps(), cameraPos.x, cameraPos.y);
+        minimap.render(ctx, display, cameraPos);
+        debug.render(ctx, display.fps(), cameraPos.x, cameraPos.y);
     };
 }
 
 function Debug() {
     var show = true;
 
-    this.display = function (ctx, fps, x, y) {
+    this.render = function (ctx, fps, x, y) {
         if (!show) {
             return
         }

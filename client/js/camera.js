@@ -32,7 +32,7 @@ function Camera(
             map.width(),
             map.height()
         );
-        overlay.display(ctx, display, pos);
+        overlay.render(ctx, display, pos);
     };
 }
 

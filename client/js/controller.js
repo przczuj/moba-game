@@ -79,13 +79,11 @@ function ScrollControl(
     this.motion = function (
         mousePos
     ) {
-        var x = mousePos.x - display.offset().left;
-        var y = mousePos.y - display.offset().top;
         camera.scroll(
-            x < SCROLL_MARGIN,
-            x > display.width() - SCROLL_MARGIN,
-            y < SCROLL_MARGIN,
-            y > display.height() - SCROLL_MARGIN
+            mousePos.x < SCROLL_MARGIN,
+            mousePos.x > display.width() - SCROLL_MARGIN,
+            mousePos.y < SCROLL_MARGIN,
+            mousePos.y > display.height() - SCROLL_MARGIN
         );
         if (mouseDownOnMinimap) {
             moveCameraByMinimap(mousePos);

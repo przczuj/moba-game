@@ -27,11 +27,13 @@ $(document).ready(function () {
     var canvas = $("<canvas/>");
     $("body").append(canvas);
     var mapImage = $("#game-map");
+
+    var display = new Display(canvas);
     new Game(
-        new Display(canvas),
+        display,
         new Controller(
             new Keyboard(),
-            new Mouse()
+            new Mouse(display)
         ),
         new Map(mapImage),
         new Player()

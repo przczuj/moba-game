@@ -3,7 +3,7 @@ Button = {
     RMB: "RMB"
 };
 
-function Mouse() {
+function Mouse(display) {
     var motionListeners = [];
     var clickListeners = [];
     var pos = {
@@ -30,8 +30,9 @@ function Mouse() {
     var clickHandler = function (isUp) {
         return function (e) {
             click.up = isUp;
-            click.x = pos.x = e.pageX;
-            click.y = pos.y = e.pageY;
+            var offset = display.offset();
+            click.x = pos.x = e.pageX - offset.left;
+            click.y = pos.y = e.pageY - offset.top;
             for (var i in clickListeners) {
                 clickListeners[i](click);
             }
@@ -41,8 +42,9 @@ function Mouse() {
     $(document).mousedown(clickHandler(false));
     $(document).mouseup(clickHandler(true));
     $(document).mousemove(function (e){
-        pos.x = e.pageX;
-        pos.y = e.pageY;
+        var offset = display.offset();
+        pos.x = e.pageX - offset.left;
+        pos.y = e.pageY - offset.top;
         for (var i in motionListeners) {
             motionListeners[i](pos);
         }
